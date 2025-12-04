@@ -1,6 +1,8 @@
 import { BookOpen, Mail, Facebook, Twitter, Instagram, Github, Heart } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { navLinks, legalLinks } from '@/constants/data';
+
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -31,17 +33,17 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="font-semibold text-sm uppercase tracking-wider text-foreground">Quick Links</h3>
             <nav className="flex flex-col space-y-2.5">
-              <Link href="/browse" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Browse Library
-              </Link>
-              <Link href="/upload" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Upload Resources
-              </Link>
-              <Link href="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                About Us
-              </Link>
-              <Link href="/dashboard" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Dashboard
+              {navLinks.filter(link => link.href !== '/').map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <Link href="/contributors" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                Contributors
               </Link>
             </nav>
           </div>
@@ -50,18 +52,15 @@ export function Footer() {
           <div className="space-y-4">
             <h3 className="font-semibold text-sm uppercase tracking-wider text-foreground">Legal</h3>
             <nav className="flex flex-col space-y-2.5">
-              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Terms of Service
-              </Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Privacy Policy
-              </Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Cookie Policy
-              </Link>
-              <Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                Guidelines
-              </Link>
+              {legalLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
             </nav>
           </div>
 

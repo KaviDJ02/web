@@ -32,11 +32,11 @@ export default function RootLayout({
         <LanguageProvider>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
+            defaultTheme="system"
             enableSystem
             disableTransitionOnChange
           >
-            <div className="relative flex min-h-screen max-w-7xl mx-auto flex-col justify-center items-center">
+            <div className="relative flex min-h-screen max-w-7xl px-4 mx-auto flex-col justify-center items-center">
               <Header />
               {children}
               <Footer />

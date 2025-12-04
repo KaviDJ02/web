@@ -1,3 +1,12 @@
+import {
+  Home,
+  FileText,
+  Upload,
+  Info,
+  LayoutDashboard,
+  Users,
+} from "lucide-react";
+
 export type Pdf = {
   id: string;
   title: string;
@@ -199,4 +208,18 @@ export const contributors: Contributor[] = [
     avatarId: "user-avatar-2",
     contribution: "O/L Notes Provider",
   },
+];
+
+export const navLinks = [
+  { href: "/", label: "Home", icon: Home },
+  { href: "/browse", label: "Library", icon: FileText },
+  { href: "/upload", label: "Upload", icon: Upload },
+  { href: "/about", label: "About", icon: Info },
+];
+
+export const legalLinks = [
+  { href: "/terms", label: "Terms of Service" },
+  { href: "/privacy", label: "Privacy Policy" },
+  { href: "/cookie-policy", label: "Cookie Policy" },
+  { href: "/guidelines", label: "Guidelines" },
 ];

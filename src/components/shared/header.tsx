@@ -28,14 +28,8 @@ import {
 } from '../ui/dropdown-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { LanguageSwitcher } from '@/components/language-switcher';
+import { navLinks } from '@/constants/data';
 
-
-const navLinks = [
-  { href: '/', label: 'Home', icon: Home },
-  { href: '/browse', label: 'Library', icon: FileText },
-  { href: '/upload', label: 'Upload', icon: Upload },
-  { href: '/about', label: 'About', icon: Info },
-];
 
 // A mock auth state
 const useAuth = () => {
@@ -73,7 +67,7 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="left" className="pr-0 w-[280px]">
               <Link href="/" className="mb-6 flex items-center gap-2" onClick={() => setSheetOpen(false)}>
-                <div className="relative w-8 h-8">
+                <div className="relative w-[135px] aspect-video">
                   <Image
                     src="/logo/nav-logo.png"
                     alt="APE ARCHIVE Logo"
@@ -81,7 +75,6 @@ export function Header() {
                     className="object-contain"
                   />
                 </div>
-                <span className="font-bold text-lg">APE ARCHIVE</span>
               </Link>
               <div className="my-4 h-[calc(100vh-8rem)]">
                 <div className="flex flex-col space-y-2">
@@ -110,7 +103,7 @@ export function Header() {
           </Sheet>
 
           <Link href="/" className="flex items-center space-x-2 md:hidden">
-            <div className="relative w-8 h-8">
+            <div className="relative w-[135px] aspect-video">
               <Image
                 src="/logo/nav-logo.png"
                 alt="APE ARCHIVE Logo"
@@ -118,7 +111,6 @@ export function Header() {
                 className="object-contain"
               />
             </div>
-            <span className="font-bold">APE ARCHIVE</span>
           </Link>
 
           <div className="ml-4">
