@@ -1,5 +1,5 @@
 import { PdfCard } from '@/components/shared/pdf-card';
-import { pdfs } from '@/lib/data';
+import { pdfs } from '@/constants/data';
 import { Filters } from '@/components/browse/filters';
 import {
   Pagination,

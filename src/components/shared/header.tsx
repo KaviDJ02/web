@@ -12,6 +12,7 @@ import {
   LayoutDashboard,
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
@@ -51,12 +52,16 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80 shadow-sm">
       <div className="container px-4 mx-auto flex h-16 items-center justify-between">
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-2">
           <Link href="/" className="hidden md:flex items-center space-x-2 group">
-            <div className="p-1.5 rounded-lg bg-primary/10 group-hover:bg-primary transition-all">
-              <BookOpen className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-colors" />
+            <div className="relative w-[135px] aspect-video">
+              <Image
+                src="/logo/nav-logo.png"
+                alt="APE ARCHIVE Logo"
+                fill
+                className="object-contain"
+              />
             </div>
-            <span className="font-bold text-lg tracking-tight">APE ARCHIVE</span>
           </Link>
 
           <Sheet open={isSheetOpen} onOpenChange={setSheetOpen}>
@@ -68,8 +73,13 @@ export function Header() {
             </SheetTrigger>
             <SheetContent side="left" className="pr-0 w-[280px]">
               <Link href="/" className="mb-6 flex items-center gap-2" onClick={() => setSheetOpen(false)}>
-                <div className="p-1.5 rounded-lg bg-primary/10">
-                  <BookOpen className="h-5 w-5 text-primary" />
+                <div className="relative w-8 h-8">
+                  <Image
+                    src="/logo/nav-logo.png"
+                    alt="APE ARCHIVE Logo"
+                    fill
+                    className="object-contain"
+                  />
                 </div>
                 <span className="font-bold text-lg">APE ARCHIVE</span>
               </Link>
@@ -100,8 +110,13 @@ export function Header() {
           </Sheet>
 
           <Link href="/" className="flex items-center space-x-2 md:hidden">
-            <div className="p-1.5 rounded-lg bg-primary/10">
-              <BookOpen className="h-5 w-5 text-primary" />
+            <div className="relative w-8 h-8">
+              <Image
+                src="/logo/nav-logo.png"
+                alt="APE ARCHIVE Logo"
+                fill
+                className="object-contain"
+              />
             </div>
             <span className="font-bold">APE ARCHIVE</span>
           </Link>

@@ -3,7 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/componen
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { FileText, Download, Eye, Languages, TrendingUp } from 'lucide-react';
-import type { Pdf } from '@/lib/data';
+import type { Pdf } from '@/constants/data';
 import { cn } from '@/lib/utils';
 
 export function PdfCard({ pdf, className }: { pdf: Pdf; className?: string }) {

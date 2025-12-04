@@ -1,5 +1,6 @@
 import { BookOpen, Mail, Facebook, Twitter, Instagram, Github, Heart } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -12,10 +13,14 @@ export function Footer() {
           {/* Brand Section */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2 group">
-              <div className="p-2 rounded-lg bg-primary/10 group-hover:bg-primary transition-colors">
-                <BookOpen className="h-5 w-5 text-primary group-hover:text-primary-foreground transition-colors" />
+              <div className="relative w-[135px] aspect-video">
+                <Image
+                  src="/logo/nav-logo.png"
+                  alt="APE ARCHIVE Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
-              <span className="font-bold text-lg">APE ARCHIVE</span>
             </Link>
             <p className="text-sm text-muted-foreground leading-relaxed">
               Empowering Sri Lankan students with accessible educational resources.
@@ -107,9 +112,15 @@ export function Footer() {
             <p className="text-sm text-muted-foreground text-center md:text-left">
               &copy; {currentYear} APE ARCHIVE. All rights reserved.
             </p>
-            <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
-              Made with <Heart className="h-4 w-4 text-primary fill-primary" /> for students
-            </p>
+            <Link
+              href="https://github.com/APE-ARCHIVE"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <Github className="h-4 w-4" />
+              APE-ARCHIVE
+            </Link>
           </div>
         </div>
       </div>

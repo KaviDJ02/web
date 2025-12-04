@@ -8,8 +8,9 @@ import {
 import { Input } from '@/components/ui/input';
 import { ArrowRight, Book, GraduationCap, Users, Search, BookOpen, FileText, Award, TrendingUp, Sparkles } from 'lucide-react';
 import Link from 'next/link';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
-import { subjects, pdfs, contributors } from '@/lib/data';
+import { PlaceHolderImages } from '@/constants/placeholder-images';
+import { subjects, pdfs, contributors } from '@/constants/data';
+import { subjectFilters } from '@/constants/filters';
 import { PdfCard } from '@/components/shared/pdf-card';
 import {
   Carousel,
@@ -21,21 +22,22 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Badge } from '@/components/ui/badge';
 import { useState } from 'react';
+import { useLanguage } from '@/lib/i18n-context';
 
 export default function Home() {
+  const { t } = useLanguage();
   const latestPdfs = pdfs.slice(0, 4);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedFilter, setSelectedFilter] = useState('All');
 
-  const subjectFilters = ['All', 'A/L', 'O/L', 'University', 'Grade 10'];
 
   return (
     <main className="flex-1">
       {/* Hero Section - Completely Redesigned */}
-      <section className="relative w-full pt-20 pb-24 md:pt-32 md:pb-40 bg-gradient-to-br from-orange-50 via-white to-orange-50/30 dark:from-orange-950/20 dark:via-background dark:to-orange-950/10 overflow-hidden">
+      <section className="relative w-full pt-20 pb-24 md:pt-32 md:pb-40 overflow-hidden">
         {/* Decorative Elements */}
-        <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }} />
+        {/* <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl animate-pulse-glow" />
+        <div className="absolute bottom-10 left-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse-glow" style={{ animationDelay: '1s' }} /> */}
 
         <div className="container relative z-10 px-4 md:px-6">
           <div className="max-w-4xl mx-auto text-center space-y-8">
@@ -47,13 +49,13 @@ export default function Home() {
 
             {/* Bold Headline */}
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance">
-              Your Academic
-              <span className="block text-primary mt-2">Success Hub</span>
+              {t('home.heroTitlePrefix')}
+              <span className="block text-primary mt-2">{t('home.heroTitleSuffix')}</span>
             </h1>
 
             {/* Minimal Description */}
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
-              Access thousands of educational resources, share knowledge, and excel in your studies.
+              {t('home.heroDescription')}
             </p>
 
             {/* Search Bar */}
@@ -62,7 +64,7 @@ export default function Home() {
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
                 <Input
                   type="search"
-                  placeholder="Search for subjects, past papers, notes..."
+                  placeholder={t('common.searchPlaceholder')}
                   className="pl-12 pr-4 h-14 text-base rounded-xl border-2 focus-visible:ring-primary focus-visible:ring-offset-4 shadow-lg"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -75,32 +77,16 @@ export default function Home() {
               <Button asChild size="lg" className="h-12 px-8 text-base rounded-xl shadow-lg hover:shadow-xl smooth-hover min-w-[200px]">
                 <Link href="/browse">
                   <BookOpen className="mr-2 h-5 w-5" />
-                  Browse Library
+                  {t('home.browseButton')}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-12 px-8 text-base rounded-xl border-2 hover:bg-primary/5 hover:border-primary smooth-hover min-w-[200px]">
                 <Link href="/upload">
                   <FileText className="mr-2 h-5 w-5" />
-                  Share Resources
+                  {t('home.uploadButton')}
                 </Link>
               </Button>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="flex flex-wrap items-center justify-center gap-8 pt-8 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                <span>Free Forever</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <span>5,000+ Resources</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-                <span>Community Driven</span>
-              </div>
             </div>
           </div>
         </div>
@@ -109,7 +95,7 @@ export default function Home() {
       {/* Popular Subjects Section - Redesigned */}
       <section
         id="popular-subjects"
-        className="w-full py-16 md:py-24 bg-white dark:bg-background"
+        className="w-full py-4 md:py-24 bg-background"
       >
         <div className="container px-4 md:px-6">
           <div className="max-w-6xl mx-auto">
@@ -117,13 +103,13 @@ export default function Home() {
             <div className="text-center space-y-4 mb-12">
               <Badge variant="outline" className="border-primary/30 text-primary">
                 <Book className="w-3 h-3 mr-1" />
-                Popular Subjects
+                {t('home.popularSubjectsBadge')}
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                Explore by Subject
+                {t('home.popularSubjectsTitle')}
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Browse through our extensive collection organized by your favorite subjects
+                {t('home.popularSubjectsDescription')}
               </p>
             </div>
 
@@ -133,11 +119,10 @@ export default function Home() {
                 <button
                   key={filter}
                   onClick={() => setSelectedFilter(filter)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    selectedFilter === filter
-                      ? 'bg-primary text-primary-foreground shadow-md'
-                      : 'bg-secondary hover:bg-primary/10 text-foreground hover:text-primary'
-                  }`}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${selectedFilter === filter
+                    ? 'bg-primary text-primary-foreground shadow-md'
+                    : 'bg-secondary hover:bg-primary/10 text-foreground hover:text-primary'
+                    }`}
                 >
                   {filter}
                 </button>
@@ -152,19 +137,20 @@ export default function Home() {
 
                 return (
                   <Link href="/browse" key={subject.name}>
-                    <Card className="group card-hover border-border/50 hover:border-primary/50 bg-card h-full">
+                    <Card className="group relative overflow-hidden border-border/40 bg-gradient-to-br from-card to-muted/30 hover:bg-gradient-to-br hover:from-background hover:to-primary/5 hover:border-primary/50 transition-all duration-300 ease-out hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1">
                       <CardContent className="flex flex-col items-center justify-center text-center p-6 space-y-4">
                         <div className="relative">
-                          <div className="rounded-2xl bg-gradient-to-br from-primary/10 to-primary/5 p-5 group-hover:from-primary group-hover:to-primary/80 smooth-hover">
-                            <Icon className="h-8 w-8 text-primary group-hover:text-primary-foreground smooth-hover" />
+                          <div className="rounded-2xl bg-primary/5 p-5 group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300 ease-out ring-1 ring-primary/10 group-hover:ring-primary/20">
+                            <Icon className="h-8 w-8 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
                           </div>
-                          <div className="absolute -top-1 -right-1 w-3 h-3 bg-primary rounded-full opacity-0 group-hover:opacity-100 smooth-hover" />
+                          {/* Decorative blur behind icon */}
+                          <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                         </div>
-                        <div>
-                          <p className="font-semibold text-sm md:text-base group-hover:text-primary smooth-hover">
+                        <div className="space-y-1 z-10">
+                          <p className="font-semibold text-base group-hover:text-primary transition-colors duration-300">
                             {subject.name}
                           </p>
-                          <p className="text-xs text-muted-foreground mt-1">
+                          <p className="text-xs text-muted-foreground group-hover:text-muted-foreground/80 transition-colors">
                             {subject.count} resources
                           </p>
                         </div>
@@ -179,49 +165,8 @@ export default function Home() {
             <div className="text-center mt-10">
               <Button asChild variant="outline" className="border-2 hover:border-primary hover:bg-primary/5 smooth-hover">
                 <Link href="/browse">
-                  View All Subjects
+                  {t('home.viewAllSubjects')}
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Latest Uploads Section - Redesigned */}
-      <section
-        id="latest-uploads"
-        className="w-full py-16 md:py-24 bg-gradient-to-b from-muted/30 to-background"
-      >
-        <div className="container px-4 md:px-6">
-          <div className="max-w-6xl mx-auto">
-            {/* Section Header */}
-            <div className="text-center space-y-4 mb-12">
-              <Badge variant="outline" className="border-primary/30 text-primary">
-                <Sparkles className="w-3 h-3 mr-1" />
-                Latest Uploads
-              </Badge>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                Recently Added Resources
-              </h2>
-              <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Fresh study materials uploaded by our amazing community
-              </p>
-            </div>
-
-            {/* Clean White Cards Grid */}
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-              {latestPdfs.map((pdf) => (
-                <PdfCard key={pdf.id} pdf={pdf} />
-              ))}
-            </div>
-
-            {/* View All Button */}
-            <div className="text-center mt-12">
-              <Button asChild size="lg" className="h-12 px-8 rounded-xl shadow-lg hover:shadow-xl smooth-hover">
-                <Link href="/browse">
-                  View All Resources
-                  <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
             </div>
@@ -232,7 +177,7 @@ export default function Home() {
       {/* Contributors Section - Redesigned */}
       <section
         id="our-contributors"
-        className="w-full py-16 md:py-24 bg-white dark:bg-background"
+        className="w-full py-4 md:py-24 bg-background"
       >
         <div className="container px-4 md:px-6">
           <div className="max-w-6xl mx-auto">
@@ -240,13 +185,13 @@ export default function Home() {
             <div className="text-center space-y-4 mb-12">
               <Badge variant="outline" className="border-primary/30 text-primary">
                 <Users className="w-3 h-3 mr-1" />
-                Top Contributors
+                {t('home.contributorsBadge')}
               </Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                Community Heroes
+                {t('home.contributorsTitle')}
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Meet the amazing individuals who make learning accessible for everyone
+                {t('home.contributorsDescription')}
               </p>
             </div>
 
@@ -298,7 +243,7 @@ export default function Home() {
                               <div className="flex items-center justify-center gap-2 pt-2">
                                 <Badge variant="secondary" className="text-xs">
                                   <Award className="w-3 h-3 mr-1 text-primary" />
-                                  Top Contributor
+                                  {t('home.topContributorBadge')}
                                 </Badge>
                               </div>
                             </div>
@@ -316,87 +261,42 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Trust Metrics Section - Redesigned */}
-      <section className="w-full py-16 md:py-24 bg-gradient-to-br from-primary/5 via-background to-primary/5">
+      {/* Latest Uploads Section - Redesigned */}
+      <section
+        id="latest-uploads"
+        className="w-full py-4 md:py-24 bg-background"
+      >
         <div className="container px-4 md:px-6">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             {/* Section Header */}
-            <div className="text-center space-y-4 mb-16">
+            <div className="text-center space-y-4 mb-12">
+              <Badge variant="outline" className="border-primary/30 text-primary">
+                <Sparkles className="w-3 h-3 mr-1" />
+                {t('home.latestUploadsBadge')}
+              </Badge>
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                Trusted by Students Everywhere
+                {t('home.latestUploadsTitle')}
               </h2>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Join thousands of students who are already benefiting from our platform
+                {t('home.latestUploadsDescription')}
               </p>
             </div>
 
-            {/* Metrics Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Active Users */}
-              <div className="group">
-                <Card className="border-border/50 hover:border-primary/50 card-hover h-full text-center">
-                  <CardContent className="pt-8 pb-8 px-6 space-y-4">
-                    <div className="inline-flex items-center justify-center">
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl group-hover:blur-2xl smooth-hover" />
-                        <div className="relative rounded-2xl bg-gradient-to-br from-primary to-primary/80 p-4">
-                          <Users className="w-10 h-10 text-primary-foreground" />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-4xl font-bold text-primary mb-1">10,000+</div>
-                      <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                        Active Students
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+            {/* Clean White Cards Grid */}
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+              {latestPdfs.map((pdf) => (
+                <PdfCard key={pdf.id} pdf={pdf} />
+              ))}
+            </div>
 
-              {/* PDFs Shared */}
-              <div className="group">
-                <Card className="border-border/50 hover:border-primary/50 card-hover h-full text-center">
-                  <CardContent className="pt-8 pb-8 px-6 space-y-4">
-                    <div className="inline-flex items-center justify-center">
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl group-hover:blur-2xl smooth-hover" />
-                        <div className="relative rounded-2xl bg-gradient-to-br from-primary to-primary/80 p-4">
-                          <Book className="w-10 h-10 text-primary-foreground" />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-4xl font-bold text-primary mb-1">5,000+</div>
-                      <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                        Study Resources
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Subjects */}
-              <div className="group">
-                <Card className="border-border/50 hover:border-primary/50 card-hover h-full text-center">
-                  <CardContent className="pt-8 pb-8 px-6 space-y-4">
-                    <div className="inline-flex items-center justify-center">
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl group-hover:blur-2xl smooth-hover" />
-                        <div className="relative rounded-2xl bg-gradient-to-br from-primary to-primary/80 p-4">
-                          <GraduationCap className="w-10 h-10 text-primary-foreground" />
-                        </div>
-                      </div>
-                    </div>
-                    <div>
-                      <div className="text-4xl font-bold text-primary mb-1">50+</div>
-                      <div className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
-                        Subjects Covered
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
+            {/* View All Button */}
+            <div className="text-center mt-12">
+              <Button asChild size="lg" className="h-12 px-8 rounded-xl shadow-lg hover:shadow-xl smooth-hover">
+                <Link href="/browse">
+                  {t('home.viewAllResources')}
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+              </Button>
             </div>
           </div>
         </div>
