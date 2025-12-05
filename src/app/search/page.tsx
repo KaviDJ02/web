@@ -10,18 +10,21 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination';
+import { BubbleBackground } from '@/components/ui/shadcn-io/bubble-background';
 
-export default function BrowsePage() {
+export default function SearchPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="relative mb-12 py-16 md:py-24 bg-zinc-950 rounded-3xl overflow-hidden text-center">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+      <BubbleBackground
+        className="mb-12 py-16 md:py-24 rounded-xl overflow-hidden text-center"
+        interactive
+      >
         <div className="relative z-10 max-w-3xl mx-auto px-4">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-6 font-headline">
+          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-6 font-headline">
             Sri Lanka's Digital <br />
-            <span className="text-red-500">Learning Hub</span>
+            <span>Learning Hub</span>
           </h1>
-          <p className="text-lg md:text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-foreground mb-10 max-w-2xl mx-auto">
             Access thousands of educational resources, share knowledge, and excel in your studies.
           </p>
 
@@ -34,7 +37,7 @@ export default function BrowsePage() {
             />
           </div>
         </div>
-      </div>
+      </BubbleBackground>
 
       <div className="grid lg:grid-cols-[280px_1fr] gap-8">
         <aside className="hidden lg:block">
