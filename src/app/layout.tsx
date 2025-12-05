@@ -56,7 +56,7 @@ export default function RootLayout({
               {/*  Diagonal Cross Grid Background */}
               <div
                 className="absolute inset-0 z-0 opacity-40
-    [background-image:linear-gradient(45deg,transparent_49%,hsl(var(--border))_49%,hsl(var(--border))_51%,transparent_51%),linear-gradient(-45deg,transparent_49%,hsl(var(--border))_49%,hsl(var(--border))_51%,transparent_51%)]
+    [background-image:linear-gradient(0deg,transparent_49%,hsl(var(--border))_49%,hsl(var(--border))_51%,transparent_51%),linear-gradient(90deg,transparent_49%,hsl(var(--border))_49%,hsl(var(--border))_51%,transparent_51%)]
     [background-size:40px_40px]"
               ></div>
 

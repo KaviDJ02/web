@@ -54,7 +54,7 @@ function BubbleBackground({
       ref={containerRef}
       data-slot="bubble-background"
       className={cn(
-        "relative size-full overflow-hidden bg-orange-400", // now uses theme bg
+        "relative size-full overflow-hidden bg-background", // now uses theme bg
         className
       )}
       {...props}
