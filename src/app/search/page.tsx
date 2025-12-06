@@ -343,14 +343,18 @@ export default function SearchPage() {
       console.log('Search API response:', response.data);
 
       if (response.data?.success && response.data?.data) {
-        const data = response.data.data;
-        if (Array.isArray(data)) {
-          setResources(data);
-          // Estimate total pages if not provided
-          setTotalPages(data.length < limit ? page : page + 1);
-        } else if (data.items) {
-          setResources(data.items);
-          setTotalPages(Math.ceil((data.total || data.items.length) / limit));
+        const responseData = response.data.data;
+
+        // Handle nested structure: data.data (array) and data.meta (pagination)
+        if (responseData.data && Array.isArray(responseData.data)) {
+          setResources(responseData.data);
+          if (responseData.meta) {
+            setTotalPages(responseData.meta.totalPages || Math.ceil(responseData.meta.total / limit));
+          }
+        } else if (Array.isArray(responseData)) {
+          // Fallback for flat array response
+          setResources(responseData);
+          setTotalPages(responseData.length < limit ? page : page + 1);
         }
       }
     } catch (error) {
