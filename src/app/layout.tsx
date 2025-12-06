@@ -9,6 +9,7 @@ import { ModeToggle } from '@/components/mode-toggle';
 import { LanguageProvider } from '@/lib/i18n-context';
 import { QueryProvider } from '@/components/query-provider';
 import { AuthProvider } from '@/lib/auth-context';
+import { BugReportButton } from '@/components/shared/bug-report-button';
 
 export const metadata: Metadata = {
   title: 'APE ARCHIVE',
@@ -72,7 +73,9 @@ export default function RootLayout({
                     <Footer />
                   </div>
                 </div>
-                <div className="fixed bottom-4 right-4 z-50">
+                {/* Floating buttons - bottom right */}
+                <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-3">
+                  <BugReportButton /> 
                   <ModeToggle />
                 </div>
                 <Toaster />
