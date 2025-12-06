@@ -14,6 +14,7 @@ const contributors = [
     { name: "Vidura Prayadarshana", githubProfile: "https://res.cloudinary.com/dsuj0mjxy/image/upload/v1765042001/Visura_Priyadharshana_nkhmkj.jpg" },
     { name: "Sasuni Wijerathne", githubProfile: "https://res.cloudinary.com/dsuj0mjxy/image/upload/v1765042011/Sasuni_Wijerathne_jdjpq6.jpg" },
     { name: "Sithumini Dulanjalee", githubProfile: "https://res.cloudinary.com/dsuj0mjxy/image/upload/v1765042002/Sithumini_Dulanjalee_akuxvk.jpg" },
+    { name: "Ranuthi Pehansa", githubProfile: "https://res.cloudinary.com/dsuj0mjxy/image/upload/v1765042003/Ranuthi_pehansa_Peiris.jpeg_qktvlq.jpg" },
     { name: "Yasiru Sahan", githubProfile: "https://res.cloudinary.com/dsuj0mjxy/image/upload/v1765042013/Yasiru_sahan.jpeg_io9q8t.jpg" },
     { name: "Isuru Rathnajake", githubProfile: "https://res.cloudinary.com/dsuj0mjxy/image/upload/v1765042010/Isuru_Rathnajake_niyzhb.jpg" },
     { name: "Saumya Divyanjalee", githubProfile: "https://res.cloudinary.com/dsuj0mjxy/image/upload/v1765042000/Saumya_Divyanjalee.jpeg_edva5o.jpg" },
@@ -21,14 +22,13 @@ const contributors = [
     { name: "Manuja Ravishka", githubProfile: "https://res.cloudinary.com/dsuj0mjxy/image/upload/v1765042004/Manuja_Ravishka_oth84v.jpg" },
     { name: "Imasha Dewmi", githubProfile: "https://res.cloudinary.com/dsuj0mjxy/image/upload/v1765042003/Imasha_Dewmi_zn6fu3.jpg" },
     { name: "Dhanika D Suranga", githubProfile: "https://res.cloudinary.com/dsuj0mjxy/image/upload/v1765042003/Dhanika_D_Suranga_ydnqip.jpg" },
-    { name: "Ranuthi Pehansa Peiris", githubProfile: "https://res.cloudinary.com/dsuj0mjxy/image/upload/v1765042003/Ranuthi_pehansa_Peiris.jpeg_qktvlq.jpg" },
 ]
 
 
 // Split contributors into rows for the river effect
 const row1 = contributors.slice(0, 5);
 const row2 = contributors.slice(5, 10);
-const row3 = contributors.slice(10, 15);
+const row3 = contributors.slice(10, 16);
 
 export default function ContributorsPage() {
     return (
